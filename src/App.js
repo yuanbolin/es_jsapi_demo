@@ -17,7 +17,7 @@ class App extends Component {
         // this.clientIndex()  //新增索引源
         // this.clientCreate() //新增数据
         // this.clientBulkCreate() //批量新增数据
-        // this.clientSearch()  //条件查询
+        this.clientSearch()  //条件查询
         // this.clientMsearch()  //批量索引查询
         // this.clientGet()  //id查询
         // this.clientMget()  //批量id查询
@@ -146,45 +146,42 @@ class App extends Component {
                 index: 'yuanbolin',
                 from: 0, //文档偏移量/下标
                 size: 10, //数据量
-                // q: "app_name:web",  //简易查询
-                body: {
-                    query: {
-                        bool: {
-                            // aggs: {
-                            //     termsAgg: {
-                            //         terms: {
-                            //             field: "_id"
-                            //         },
-                            //     }
-                            // },
-                            filter: [   //多参数查询
-                                {
-                                    match_phrase: {
-                                        app_name: 'web',
-                                    }
-                                },
-                                {
-                                    range: {
-                                        // 'age': {
-                                        //     gte: "24",
-                                        //     lte: "25"
-                                        // },
-                                        '@timestamp': {
-                                            format: "strict_date_optional_time",
-                                            gte: "2013-12-18T02:38:51.716Z",
-                                            lte: "2021-01-05T09:38:51.716Z"
-                                        }
-                                    }
-                                }
-                            ]
-                        },
-                    },
-                    sort: [{
-                        '@timestamp': {
-                            order: 'asc'   //按照@timestamp进行排序 asc desc
-                        }
-                    }]
-                }
+                q: "app_name:web",  //简易查询
+                // body: {
+                //     aggs:{
+                //         termsAgg:{
+                //             terms:{
+                //                 field:"_id"
+                //             },
+                //
+                //         }
+                //     },
+                //     query: {
+                //         bool: {
+                //             filter: [   //多参数查询
+                //                 {
+                //                     match_phrase: {
+                //                         app_name: 'web',
+                //                     }
+                //                 },
+                //                 {
+                //                     range: {
+                //                         '@timestamp': {
+                //                             format: "strict_date_optional_time",
+                //                             gte: "2013-12-18T02:38:51.716Z",
+                //                             lte: "2021-01-05T09:38:51.716Z"
+                //                         }
+                //                     }
+                //                 }
+                //             ]
+                //         },
+                //     },
+                //     sort: [{
+                //         '@timestamp': {
+                //             order: 'asc'   //按照@timestamp进行排序 asc desc
+                //         }
+                //     }]
+                // }
             },
             {
                 ignore: [404],  //HTTP状态码，对于这个请求不应该被认为是错误。
